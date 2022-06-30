@@ -1,59 +1,29 @@
 # Overview
-This repository contains a React frontend, and an Express backend that the frontend connects to.
+1) This code is made up of two parts. FrontEnd and Backend. Both the files are dockerized.
 
-# Objective
-Deploy the frontend and backend to somewhere publicly accessible over the internet. The AWS Free Tier should be more than sufficient to run this project, but you may use any platform and tooling you'd like for your solution.
+# Solution
+1) The base code is present inside the folder named as "solution"
+2) Inside "solution/frontend" folder, the Docker file is present.<br>
+  2.1) The docker image can be build as "sudo docker build -t frontend-server ." <br>
+  2.2) This creates the image named as "frontend-server".<br>
+  2.3) Run the image by the command "sudo docker run -p 3000:3000 -d frontend-server"<br>
+3) Inside "solution/frontend" folder, the Docker file is present.<br>
+  3.1) The docker image can be build as "sudo docker build -t backend-server ."<br>
+  3.2) This creates the image named as "backend-server".<br>
+  3.3) Run the image by the command "sudo docker run -p 8080:8080 -d backend-server"<br>
+4) Please note that the CORS Error will arise, which can be changed by modifying the file inside "backend" code inside the "CORS" location
+5) All the code is cloned from the repo(This repo), which means that if any change happens, and if Steps(2) and (3) are repeated, then the code will have the latest changes. Thus the code will always run the latest code whenever the code is "run".
+6) As of now, this is running on the ElasticIP (on EC2 instance) so it can be accessed as given below.
+ 
 
-Fork this repo as a base. You may change any code in this repository to suit the infrastructure you build in this code challenge.
+# URL Checks
+1. FrontEnd: http://3.143.137.240:3000/
+2. Backend : http://3.143.137.240:8080/
 
-# Submission
-1. A github repo that has been forked from this repo with all your code.
-2. Modify this README file with instructions for:
-* Any tools needed to deploy your infrastructure
-* All the steps needed to repeat your deployment process
-* URLs to the your deployed frontend.
+# Future Tentative Enhancements
+1. These images can be saved to ECR/DockerHub
+2. The Images can be then run on ECS/EKS
+3. We Can also add the Pipeline(AWS Code Pipeline) for automatic deployments. Or we can also use Jenkins for the same.
 
-# Evaluation
-You will be evaluated on the ease to replicate your infrastructure. This is a combination of quality of the instructions, as well as any scripts to automate the overall setup process.
 
-# Setup your environment
-Install nodejs. Binaries and installers can be found on nodejs.org.
-https://nodejs.org/en/download/
-
-For macOS or Linux, Nodejs can usually be found in your preferred package manager.
-https://nodejs.org/en/download/package-manager/
-
-Depending on the Linux distribution, the Node Package Manager `npm` may need to be installed separately.
-
-# Running the project
-The backend and the frontend will need to run on separate processes. The backend should be started first.
-```
-cd backend
-npm ci
-npm start
-```
-The backend should response to a GET request on `localhost:8080`.
-
-With the backend started, the frontend can be started.
-```
-cd frontend
-npm ci
-npm start
-```
-The frontend can be accessed at `localhost:3000`. If the frontend successfully connects to the backend, a message saying "SUCCESS" followed by a guid should be displayed on the screen.  If the connection failed, an error message will be displayed on the screen.
-
-# Configuration
-The frontend has a configuration file at `frontend/src/config.js` that defines the URL to call the backend. This URL is used on `frontend/src/App.js#12`, where the front end will make the GET call during the initial load of the page.
-
-The backend has a configuration file at `backend/config.js` that defines the host that the frontend will be calling from. This URL is used in the `Access-Control-Allow-Origin` CORS header, read in `backend/index.js#14`
-
-# Optional Extras
-The core requirement for this challenge is to get the provided application up and running for consumption over the public internet. That being said, there are some opportunities in this code challenge to demonstrate your skill sets that are above and beyond the core requirement.
-
-A few examples of extras for this coding challenge:
-1. Dockerizing the application
-2. Scripts to set up the infrastructure
-3. Providing a pipeline for the application deployment
-4. Running the application in a serverless environment
-
-This is not an exhaustive list of extra features that could be added to this code challenge. At the end of the day, this section is for you to demonstrate any skills you want to show that’s not captured in the core requirement.
+You can contact me on : mmerima310@gmail.com
